@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -12,12 +13,28 @@ import (
 
 func main() {
 	ctx := context.Background()
-	apiKey := os.Getenv("YOUTUBE_API_KEY")
-	playlistId := os.Getenv("YOUTUBE_PLAYLIST_ID")
-	channelId := os.Getenv("YOUTUBE_CHANNEL_ID") // Assuming you have this
+	// Define flags for command-line arguments
+	apiKeyFlag := flag.String("apiKey", "", "YouTube API key")
+	playlistIdFlag := flag.String("playlistId", "", "YouTube Playlist ID")
+	channelIdFlag := flag.String("channelId", "", "YouTube Channel ID")
+	flag.Parse()
+
+	// Use command-line arguments if provided, otherwise use environment variables
+	apiKey := *apiKeyFlag
+	if apiKey == "" {
+		apiKey = os.Getenv("YOUTUBE_API_KEY")
+	}
+	playlistId := *playlistIdFlag
+	if playlistId == "" {
+		playlistId = os.Getenv("YOUTUBE_PLAYLIST_ID")
+	}
+	channelId := *channelIdFlag
+	if channelId == "" {
+		channelId = os.Getenv("YOUTUBE_CHANNEL_ID")
+	}
 
 	if apiKey == "" || playlistId == "" || channelId == "" {
-		log.Fatal("Missing API key, playlist ID, or channel ID in environment variables")
+		log.Fatal("Missing API key, playlist ID, or channel ID. Please provide them as command-line arguments or environment variables.")
 	}
 
 	service, err := youtube.NewService(ctx, option.WithAPIKey(apiKey))
