@@ -1,51 +1,60 @@
 ```markdown
+# YouTube Channel Metrics Dashboard
+
+This Go application provides a simple web server that serves a dashboard displaying YouTube channel metrics, including playlist details and channel statistics. It's designed to demonstrate how to integrate with the YouTube Data API v3 and serve dynamic content using Go's built-in HTTP server capabilities.
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+- You have installed [Go](https://golang.org/dl/) (version 1.13 or later recommended).
+- You have a basic understanding of Go programming.
+- You have access to a Google account for using the YouTube Data API v3.
+
 ## Getting Started
 
+Follow these steps to get your YouTube Channel Metrics Dashboard running:
+
 ### Step 1: Clone the Repository
-Start by cloning this repository to your local machine.
-```
-git clone https://github.com/michaelcade/youtube-metrics-playlist.git
-cd youtube-metrics-playlist
+
+Clone this repository to your local machine using:
+
+```bash
+git clone https://github.com/michaelcade/youtube-channel-metrics.git
+cd youtube-channel-metrics
 ```
 
-### Step 2: Obtain YouTube API Key, Playlist ID, and Channel ID
-1. **YouTube API Key**: Follow the instructions [here](https://developers.google.com/youtube/registering_an_application) to obtain your YouTube API key.
-2. **Playlist ID**: Find the playlist ID from the playlist URL. It's usually after the `list=` parameter.
-3. **Channel ID**: You can find the channel ID in the channel's URL or in the advanced settings of the channel's account.
+### Step 2: Obtain a YouTube Data API Key
 
-### Step 3: Set Environment Variables or Use Command-Line Arguments
-You have two options to provide the necessary information to the application:
+1. Visit the [Google Developers Console](https://console.developers.google.com/).
+2. Create a new project.
+3. Navigate to `Credentials`, then click on `Create credentials` > `API key`.
+4. Enable the YouTube Data API v3 for your project.
 
-#### Option A: Environment Variables
-Set the following environment variables:
-- `YOUTUBE_API_KEY`: Your YouTube API key.
-- `YOUTUBE_PLAYLIST_ID`: The ID of the playlist you want to analyze.
-- `YOUTUBE_CHANNEL_ID`: The ID of the channel you're interested in.
+### Step 3: Set Up Environment Variables
 
-On macOS or Linux, you can set these variables in your terminal like so:
-```
-export YOUTUBE_API_KEY='your_youtube_api_key_here'
-export YOUTUBE_PLAYLIST_ID='your_playlist_id_here'
-export YOUTUBE_CHANNEL_ID='your_channel_id_here'
-```
+Set the following environment variables with your API key, YouTube playlist ID, and channel ID:
 
-For Windows, use the following in Command Prompt:
-```
-set YOUTUBE_API_KEY=your_youtube_api_key_here
-set YOUTUBE_PLAYLIST_ID=your_playlist_id_here
-set YOUTUBE_CHANNEL_ID=your_channel_id_here
-```
-
-#### Option B: Command-Line Arguments
-Alternatively, you can provide the information as command-line arguments when running the application:
-```
-go run main.go -apiKey="your_youtube_api_key_here" -playlistId="your_playlist_id_here" -channelId="your_channel_id_here"
+```bash
+export YOUTUBE_API_KEY='YOUR_API_KEY'
+export YOUTUBE_PLAYLIST_ID='YOUR_PLAYLIST_ID'
+export YOUTUBE_CHANNEL_ID='YOUR_CHANNEL_ID'
 ```
 
 ### Step 4: Run the Application
-Depending on your choice in Step 3, navigate to the project directory and run the application using the environment variables or command-line arguments as shown above.
+
+Run the application with:
+
+```bash
+go run main.go
 ```
+
+The server will start on `localhost:8080`. Open your web browser and navigate to `http://localhost:8080` to view the dashboard.
+
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+```
