@@ -44,7 +44,7 @@ func main() {
 		http.ServeFile(w, r, "index.html")
 	})
 
-	http.HandleFunc("/metrics", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/metrics/youtube", func(w http.ResponseWriter, r *http.Request) {
 		playlistTitle, totalViews, err := fetchPlaylistDetails(service, playlistId)
 		if err != nil {
 			http.Error(w, "Failed to fetch playlist details", http.StatusInternalServerError)
